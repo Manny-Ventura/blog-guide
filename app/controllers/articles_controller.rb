@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
+    @article = Article.find(article_params)
   end
 
   def new
@@ -20,4 +20,8 @@ class ArticlesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
    end
+
+   private
+    def article_params
+      params.require(:article).permit(:title, :body)
   end
